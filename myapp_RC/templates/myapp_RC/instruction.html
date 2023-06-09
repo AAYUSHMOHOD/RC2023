@@ -1,0 +1,144 @@
+{% load static %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Instructions</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'instructionstyle.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="Navbar2">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a href="#">
+            <img src="{% static 'images/rclogo.png' %}" alt="RC" height="30px" width="40px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+        </div>
+        <img src="{% static 'images/pisblogo.png' %}"  height="40px" width="100px" alt="PISB IEEE" style="float: right;">
+        </nav>
+    </div>
+
+    <!-- Instruction -->
+    <div class="container-1">
+        <div id="test" onmousedown='return false;' onselectstart='return false;'class="giveborderstop"  >
+            <!-- Common -->
+            <h1 class="title">INSTRUCTIONS</h1>
+            <p  style=" color: white;text-align: left; text-align: center;">  1. The reverse coding round will last for 30 minutes.<br>
+                2. You will be permitted two responses for each question.<br>
+                3. If the answer provided for 1st response is incorrect, only then will the 2nd response field be enabled.<br> 
+                4. The answers are strictly in the form of integers.<br>
+                5. Throughout this test, you'll be provided with three lifelines. You can use only a single lifeline for one question. These lifelines are described below.<br>
+                6. Users are advised not to spam submit wrong answers (Test will not traverse if spam is detected). <br> 
+                7. Users are advised to code their solution in personal or external IDEs to compute the answer.<br><br>
+                Marking Scheme:<br><br>
+                For 1st response:<br>
+                   +4 marks for correct response.<br>
+                   -0 marks for wrong answer.<br><br>
+                For 2nd response:<br>
+                    +2 marks for correct response.<br>
+                    -2 marks for wrong answer.<br>
+            </p>
+            </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline5">
+                    <div class="timeline">
+                        <div class="timeline-icon"><span class="year">1</span></div>
+                        <div class="timeline-content  giveborders">
+                            <!-- First LL -->
+                            <h3 class="title">Astro Sub (Lifeline 1)</h3>
+                            <p class="description">
+                                ->This lifeline allows contestants to substitute a seemingly difficult question with an easier one.<br> 
+                                ->You will be allowed one response only for this lifeline.<br>
+                                ->You can only use this lifeline if total Astro-Sub fuel is 3.<br>
+                                ->Each correct answer will increase the Astro-Sub fuel by one.<br>
+                                ->Once this lifeline is used, the fuel again becomes 0.<br>
+                                ->You can use this lifeline more than once.<br><br>
+                                Marking Scheme:<br>
+                                +4 marks for correct response.<br>
+                                -4 marks for wrong answer.<br>
+                                No second attempt allowed.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div id="test" onmousedown='return false;' onselectstart='return false;' class="timeline-icon"><span class="year">2</span></div>
+                        <div class="timeline-content  givebordersl">
+                            <!-- Second LL -->
+                            <h3 class="title">Time Warp (Lifeline2)</h3>
+                            <p class="description">
+                                ->This lifeline gives you the advantage of having additional time if you answer questions correctly. <br>
+                                ->This lifeline can only be used once. <br>
+                                ->You only have 30 seconds to activate this lifeline once the question is displayed. <br>
+                                ->Marking Scheme for this lifeline remains the same.<br><br>
+                                Timer Scheme: <br><br>
+                                For first response : <br> 
+                                +5 min for correct response<br>
+                                -2 min for wrong response<br><br>
+                                For second response : <br>
+                                +3 min for correct response<br>
+                                -3 min for wrong response<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-icon"><span class="year">3</span></div>
+                        <div id="test" onmousedown='return false;' onselectstart='return false;'class="timeline-content  giveborders">
+                            <!-- Third LL -->
+                            <h3 class="title">Galactic Guidance (Lifeline 3)</h3>
+                            <p class="description">
+                                ->This lifeline allows contestants to ask ChatGPT, the virtual assistant, for guidance and advice when unsure about the answer to a question.<br>
+                                ->This lifeline can only be used after the contestant has attempted at least 2 questions.<br>
+                                ->Marking scheme for this lifeline remains the same.<br>
+                                ->This lifeline can only be used once. 
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Proceed to Test -->
+                    <form  method = "POST" style="text-align: center;" action="{% url 'Instruction' %}">
+                        <div id="test" onmousedown='return false;' onselectstart='return false;' style="text-align: center; color: white;">
+                            <input type="checkbox" id="check" name="check" required>
+                            <label for="check">I have read and agree / agreed with the terms and conditions</label>
+                        </div> 
+                        {% csrf_token %}
+                        <button type="submit" class="mt-4 btn my-btn" style="color: white; background-color: #0C2340; box-shadow: 2px 2px 10px white; font-size: 20px;">Proceed</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <div id="test" onmousedown='return false;' onselectstart='return false;'class="footer" >
+        <footer>
+            <p class="footertext">©PISB</p>
+        </footer>
+    </div>
+
+    <!-- Disabling Back Button -->
+    <script type="text/javascript">
+        window.history.forward();
+        function noback(){
+          window.history.forward();
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/84ff0cdea4.js" crossorigin="anonymous"></script>
+</body>

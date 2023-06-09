@@ -1,0 +1,502 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, device-height=device-height, initial-scale=1.0" >
+    <title>Question Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <!-- Whole Body -->
+    <div id = "test"   class="mycontainer">
+
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a href="#">
+          <img src="{% static 'images/rclogo.png' %}" alt="RC" height="30px" width="40px">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+          <button type="button" class="btn btn-info" id="instruct" data-bs-toggle="modal" data-bs-target="#inModal">INSTRUCTIONS</button>
+          <button type="button" class="btn btn-info" id="instruct" data-bs-toggle="modal" data-bs-target="#lbModal">LEADERBOARD</button> 
+          <button type="button" class="btn btn-info" id="instruct" data-bs-toggle="modal" data-bs-target="#STModal">SUBMIT TEST</button>
+        </div>
+        <img src="{% static 'images/pisblogo.png' %}"  height="40px" width="100px" alt="PISB IEEE" style="float: right; margin-left: 10px;">>
+        </nav>
+  
+      <!-- Main Body -->
+      <div class="columns">
+
+        <!-- First Column -->
+        <div class="column1">
+          <div class="c13">
+
+            <!-- Marking Schemes -->
+            <table class="tb1">
+              <thead id="tb1">
+                <th>Marking Scheme</th>
+              </thead>
+              <tbody>
+                <tr id="marksce">
+                <td>{{ plusmrks }}</td>
+                <td>{{ minusmrks }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <!-- Marks -->
+            <table class="tb1">
+              <thead id="tb1">
+                <th>Score</th>
+              </thead>
+              <tbody>
+                <td>{{ profile.marks }}</td>
+              </tbody>
+            </table>
+
+            <!-- Lifeline 1 Fuel -->
+           <table class="tb1">
+              <thead id="tb1">
+                <th>Lifeline 1 Fuel</th>
+              </thead>
+              <tbody>
+                <td>
+                  {{ profile.lifeline1_count }}
+                </td>
+              </tbody>
+           </table>
+          </div>
+
+          <!-- Instruction Modal -->
+          <div onmousedown='return false;' onselectstart='return false;' class="modal fade" id="inModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="test"  >
+                  <div class="container">
+                    <h3>Instruction</h3>
+                    <p class="description">  
+                      1. The reverse coding round will last for 30 minutes.<br>
+                      2. You will be permitted two responses for each question.<br>
+                      3. If the answer provided for 1st response is incorrect, only then will the 2nd response field be enabled.<br> 
+                      4. The answers are strictly in the form of integers.<br>
+                      5. Throughout this test, you'll be provided with three lifelines. You can use only a single lifeline for one question. These lifelines are described below.<br>
+                      6. Users are advised to code their solution in personal or external IDEs to compute the answer.<br><br>
+                      Marking Scheme:<br><br>
+                      For 1st response:<br>
+                         +4 marks for correct response.<br>
+                         -0 marks for wrong answer.<br><br>
+                      For 2nd response:<br>
+                          +2 marks for correct response.<br>
+                          -2 marks for wrong answer.<br>
+                  </p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+          </div>
+
+          <!-- LeaderBoard Modal -->
+          <div  onmousedown='return false;' onselectstart='return false;' class="modal fade" id="lbModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="test"  >
+                  <div class="container">
+                    <h3>Leaderboard</h3>
+                    <table id="members" class="table table-bordered responsive-table order-column" style="border: none;">
+                      <thead>
+                        <tr class="table-header" style="color: white;">
+                          <th style="text-align: center;">Rank</th>  
+                          <th style="text-align: center;">User</th>  
+                          <th style="text-align: center;">Attempted Question</th>
+                          <th style="text-align: center;">Marks</th>  
+                          <th style="text-align: center;">Accuracy</th>
+                        </tr>
+                      </thead>
+                      <tbody style="color: white;">
+                        {% for userprofiles in users|slice:":10" %}
+                          <tr class="table-row">
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ userprofiles.user }}</td>  
+                                <td>{{ userprofiles.quesno }}</td>  
+                                <td>{{ userprofiles.marks }}</td>  
+                                <td>{{ userprofiles.accuracy }}</td>  
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+          </div>
+          
+          <!-- Lifeline1 Modal -->
+          <div  onmousedown='return false;' onselectstart='return false;' class="modal fade" id="L1Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Astro Sub</h5>
+                </div>
+                <div class="modal-body" id="test"  >
+                  <p class="description">
+                    ->This lifeline allows contestants to substitute a seemingly difficult question with an easier one.<br> 
+                    ->You will be allowed one response only for this lifeline.<br>
+                    ->You can only use this lifeline if total Astro-Sub fuel is 3.<br>
+                    ->Each correct answer will increase the Astro-Sub fuel by one.<br>
+                    ->Once this lifeline is used, the fuel again becomes 0.<br>
+                    ->You can use this lifeline more than once.<br><br>
+                    Marking Scheme:<br>
+                    +4 marks for correct response.<br>
+                    -4 marks for wrong answer.<br>
+                    No second attempt allowed.
+                </p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                <form action="{% url 'lifeline1' %}">
+                  <button type="submit" class="btn btn-primary" id="activate">Activate</button>
+                  {% csrf_token %}
+                </form>
+                </div>
+            </div>
+            </div>
+          </div>
+          
+          <!-- Lifeline2 Modal -->
+          <div  onmousedown='return false;' onselectstart='return false;' class="modal fade" id="L2Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Time Warp</h5>
+                </div>
+                <div class="modal-body" id="test" onmousedown='return false;' onselectstart='return false;'>
+                  <p class="description">
+                    ->This lifeline gives you the advantage of having additional time if you answer questions correctly. <br>
+                    ->If you choose to use it, time will be added or reduced to the total test time, depending on your response <br>
+                    ->This lifeline can only be used once. <br>
+                    ->You only have 30 seconds to activate this lifeline once the question is displayed. <br>
+                    ->Marking Scheme for this lifeline remains the same.<br><br>
+                    Timer Scheme: <br><br>
+                    For first response : <br> 
+                    +5 min for correct response<br>
+                    -2 min for wrong response<br><br>
+                    For second response : <br>
+                    +3 min for correct response<br>
+                    -3 min for wrong response<br>
+                </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                <div rel="stylesheet" class="l2 action" id="lifelinesecond">
+                  <button id="activate" class="btn btn-primary" onclick="checkHiddenCheckbox()" data-bs-dismiss="modal">Activate</button>                   
+                </div>
+                </div>
+            </div>
+            </div>
+          </div>
+
+          <!-- Lifeline3 Modal -->
+          <div class="modal fade" id="L3Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" onmousedown='return false;' onselectstart='return false;'>Galactic Guidance</h5>
+                </div>
+                <div class="modal-body">
+                <icon id="icn"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                  width="50" height="50"
+                  viewBox="0 0 64 64">
+                  <linearGradient id="9yv_OTO3P9eepfu7Rtqera_kTuxVYRKeKEY_gr1" x1="32" x2="32" y1="7" y2="58" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6dc7ff"></stop><stop offset=".699" stop-color="#e6abff"></stop></linearGradient><path fill="url(#9yv_OTO3P9eepfu7Rtqera_kTuxVYRKeKEY_gr1)" d="M53.27,26.96c0.28-1.05,0.42-2.11,0.42-3.17c0-6.86-5.58-12.43-12.43-12.43 c-0.77,0-1.56,0.07-2.35,0.23C36.54,8.67,33.06,7,29.28,7c-5.55,0-10.36,3.62-11.92,8.89C11.43,16.9,7.04,22.05,7.04,28.14 c0,3.45,1.43,6.72,3.93,9.07c-0.44,1.3-0.66,2.64-0.66,4c0,6.86,5.58,12.43,12.43,12.43c0.44,0,0.88-0.02,1.38-0.08 C26.5,56.39,29.93,58,33.63,58c5.88,0,10.96-4.19,12.16-9.88c6.32-0.63,11.17-5.91,11.17-12.35 C56.96,32.46,55.62,29.29,53.27,26.96z M38.25,35.88l-6.63,4l-6.5-4v-7.26l6.63-3.87l6.63,3.75L38.25,35.88z"></path><linearGradient id="9yv_OTO3P9eepfu7Rtqerb_kTuxVYRKeKEY_gr2" x1="32" x2="32" y1=".872" y2="62.679" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1a6dff"></stop><stop offset="1" stop-color="#c822ff"></stop></linearGradient><path fill="url(#9yv_OTO3P9eepfu7Rtqerb_kTuxVYRKeKEY_gr2)" d="M53.274,26.955 c0.275-1.045,0.415-2.107,0.415-3.166c0-6.855-5.578-12.434-12.434-12.434c-0.766,0-1.553,0.079-2.35,0.235 C36.536,8.665,33.062,7,29.278,7c-5.549,0-10.353,3.622-11.913,8.891c-5.93,1.012-10.32,6.163-10.32,12.254 c0,3.448,1.424,6.715,3.93,9.07c-0.44,1.299-0.664,2.64-0.664,3.996c0,6.855,5.578,12.434,12.434,12.434 c0.433,0,0.874-0.027,1.38-0.087C26.501,56.389,29.934,58,33.633,58c5.875,0,10.96-4.192,12.152-9.878 c6.327-0.629,11.17-5.908,11.17-12.355C56.956,32.463,55.622,29.286,53.274,26.955z M51.689,23.789c0,0.646-0.07,1.293-0.193,1.937 l-12.293-7.185l-13.146,7.991v-4.91l12.814-7.972c0.813-0.191,1.615-0.295,2.383-0.295C47.008,13.355,51.689,18.036,51.689,23.789z M37.397,35.171l-5.563,3.316l-5.776-3.303v-6.311l5.465-3.322l-0.031,0.052l5.905,3.48V35.171z M29.278,9 c2.997,0,5.755,1.251,7.728,3.457l-12.948,8.054V34.04l-4.898-2.801V16.922C20.319,12.254,24.462,9,29.278,9z M9.044,28.145 c0-4.923,3.419-9.109,8.116-10.169v14.424l12.701,7.264l-5.227,3.115l-11.897-6.674C10.392,34.107,9.044,31.211,9.044,28.145z M12.311,41.211c0-0.955,0.138-1.902,0.4-2.828l11.954,6.706l12.732-7.588v6.27l-13.172,7.754c-0.57,0.078-1.043,0.12-1.48,0.12 C16.992,51.645,12.311,46.964,12.311,41.211z M33.633,56c-2.886,0-5.578-1.175-7.546-3.252l13.31-7.835V30.261l4.539,2.675V47.09 C43.192,52.173,38.773,56,33.633,56z M45.936,46.091V31.793l-6.539-3.853v-0.068h-0.115l-5.879-3.465l5.821-3.538l12.309,7.195 c2.174,1.981,3.422,4.782,3.422,7.703C54.956,41.055,51.07,45.406,45.936,46.091z"></path>
+                  </svg></icon>
+                <input type="text" id="userQuestion"></input>
+                <button id="my-button" onclick="lifeline3Fun()" ><icon id="sent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="cyan" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </icon></button>
+                </div>
+                <div id = 'test' onmousedown='return false;' onselectstart='return false;' class="chatresponse">
+                  <icon><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="44" height="44"
+                    viewBox="0,0,256,256"
+                    style="fill:#000000;">
+                    <g fill="#06ea17" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M30.7,7.27l-2.37,1.83c-1.605,-2.067 -4.068,-3.209 -6.697,-3.092c-4.32,0.192 -7.633,3.945 -7.633,8.269v9.143l10.5,6.12l-1,1.72l-11.706,-6.827c-0.492,-0.287 -0.794,-0.813 -0.794,-1.382v-8.687c0,-6.264 5.129,-11.574 11.39,-11.357c3.279,0.113 6.29,1.656 8.31,4.263z"></path><path d="M12.861,9.833l0.4,2.967c-2.592,0.357 -4.813,1.919 -6.026,4.254c-1.994,3.837 -0.4,8.582 3.345,10.745l7.918,4.571l10.55,-6.033l0.99,1.726l-11.765,6.724c-0.494,0.282 -1.101,0.281 -1.594,-0.003l-7.523,-4.343c-5.426,-3.133 -7.46,-10.23 -4.142,-15.543c1.738,-2.784 4.58,-4.619 7.847,-5.065z"></path><path d="M6.161,26.563l2.77,1.137c-0.987,2.423 -0.745,5.128 0.671,7.346c2.326,3.645 7.233,4.638 10.977,2.476l7.918,-4.572l0.05,-12.153l1.99,0.006l-0.059,13.551c-0.002,0.569 -0.307,1.094 -0.8,1.379l-7.523,4.343c-5.425,3.132 -12.588,1.345 -15.531,-4.185c-1.541,-2.897 -1.71,-6.275 -0.463,-9.328z"></path><path d="M17.3,40.73l2.37,-1.83c1.605,2.067 4.068,3.209 6.697,3.092c4.32,-0.192 7.633,-3.945 7.633,-8.269v-9.143l-10.5,-6.12l1,-1.72l11.706,6.827c0.492,0.287 0.794,0.813 0.794,1.382v8.687c0,6.264 -5.13,11.574 -11.39,11.358c-3.279,-0.114 -6.29,-1.657 -8.31,-4.264z"></path><path d="M35.139,38.167l-0.4,-2.967c2.592,-0.357 4.813,-1.919 6.026,-4.254c1.994,-3.837 0.4,-8.582 -3.345,-10.745l-7.918,-4.571l-10.55,6.033l-0.99,-1.726l11.765,-6.724c0.494,-0.282 1.101,-0.281 1.594,0.003l7.523,4.343c5.425,3.132 7.459,10.229 4.141,15.543c-1.737,2.784 -4.579,4.619 -7.846,5.065z"></path><path d="M41.839,21.437l-2.77,-1.137c0.987,-2.423 0.745,-5.128 -0.671,-7.346c-2.326,-3.645 -7.233,-4.638 -10.977,-2.476l-7.918,4.572l-0.05,12.153l-1.99,-0.006l0.059,-13.551c0.002,-0.569 0.307,-1.094 0.8,-1.379l7.523,-4.343c5.425,-3.132 12.588,-1.345 15.531,4.185c1.541,2.897 1.71,6.275 0.463,9.328z"></path></g></g>
+                    </svg></icon>
+                    <p id="answerParagraph" class="description">
+                      * Chat GPT response will be displayed here *
+                      <br><br>
+                        ->This lifeline allows contestants to ask ChatGPT, the virtual assistant, for guidance and advice when unsure about the answer to a question.<br>
+                        ->You can close and reopen this box to refer the question if you want, the changes won't be lost.<br>
+                        ->This lifeline can only be used after the contestant has attempted at least 2 questions.<br>
+                        ->Marking scheme for this lifeline remains the same.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal" >Close</button>
+                </div>
+            </div>
+            </div>                                                 
+          </div>
+
+          <!-- SubmitTest Modal -->
+          <div class="modal fade" id="STModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+            <div class="modal-dialog modal-xs modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="test"  >
+                Do you really want to end this test?
+                </div >
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                <form action = "/result">
+                  <button id="STfinal" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+                </form>
+                </div>
+            </div>
+            </div>
+          </div>
+
+          <!-- Adjusting Button appearances -->
+          <div class="c12">
+            <p>Lifelines</p>
+            {% if profile.lifeline1_using %}
+            <button type="button" class="btn btn-info " data-bs-toggle="modal"  id="lf5" data-bs-target="#L1Modal" disabled>Activated</button>
+            {% elif profile.lifeline2_status %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal"  id="lf1" data-bs-target="#L1Modal" disabled >Astro Sub</button>
+            {% elif profile.lifeline1_status %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal"  id="lf1" data-bs-target="#L1Modal">Astro Sub</button>
+            {% else %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal"  id="lf1" data-bs-target="#L1Modal" disabled >Astro Sub</button>
+            {% endif %}            
+            
+            {% if profile.lifeline1_using %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf2" data-bs-target="#L2Modal" disabled>Time Warp</button>
+            {% elif profile.lifeline2_superstatus %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf2" data-bs-target="#L2Modal" style="animation-name: fadeOut; animation-duration: 30s;">Time Warp</button>
+            {% elif profile.lifeline2_status %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf6" data-bs-target="#L2Modal" disabled>Activated</button>
+            {% else %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf2" data-bs-target="#L2Modal" disabled>Time Warp</button>
+            {% endif %}
+
+            {% if profile.lifeline1_using or profile.lifeline2_status %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf3" data-bs-target="#L3Modal" disabled>Galactic Guidance</button>
+            {% elif profile.lifeline3_status %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf3" data-bs-target="#L3Modal">Galactic Guidance</button>
+            {% else %}
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" id="lf3" data-bs-target="#L3Modal" disabled>Galactic Guidance</button>
+            {% endif %}
+          </div>
+      </div>
+
+      <!-- Second Column -->
+      <div class="column2">
+        <div class="c21">
+          <div class="tr"><h1 class="trhead"><span id="time" class="t"><p id="timer"></p></h1></div>
+        </div>
+
+        <!-- Form to get Responses -->
+        <form method="POST" action="{% url 'QuestionView1' %}" name="name1">
+          {% csrf_token %}
+          <div class="queshead" class="column1" onmousedown='return false;' onselectstart='return false;'>       
+            <h2 class="qh">Question No. {{ profile.quesno }}</h2>            
+          </div>
+          <div class="question" id="test" class="column1" onmousedown='return false;' onselectstart='return false;'>
+            <p>{{ currquest }}</p>
+          </div>
+          {% if profile.isFirstTry%}
+            <div class="responses">
+              <div class="opt1">
+                Response 1 :
+                <input type="number" name="res1" class="res1" id="res1" required>
+              </div>
+              <div class="opt2">
+                Response 2 :
+                <input type="number" name="res2" class="res2" id="res2" placeholder="Enter response 1 first" disabled>
+              </div>
+            </div>
+            <div class="sub">
+              <button type="submit" name="submit" class="submit" id="next" value="{{profile.quesno}}">Next</button>
+            </div>
+            {% else %}
+              <div class="responses">
+                <div class="opt1">
+                  Response 1 : 
+                  <input type="number" name="res1" class="res1" id="res1" disabled placeholder="{{ profile.cache }}">
+                </div>
+                <div class="opt2">
+                  <p>Response 2 :</p> 
+                  <input type="number" name="res2" class="res2" id="res2" required>
+                </div>
+              </div>
+              <div class="sub">
+                <button type="submit" name="submit" class="submit" id="next" value="{{profile.quesno}}">Next</button>
+              </div>
+            {% endif %}
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div id = "test" class="footer" >
+        <footer>
+            <p class="footertext">©PISB</p>
+        </footer>
+      </div>
+       
+      <!-- Scripts -->
+      <!-- Disable Back Button -->
+      <script type="text/javascript">
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        window.history.forward();
+        function noback(){
+          window.history.forward();
+        }
+      </script>
+      
+      <!-- LL3 Ajax -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script>
+        function disableInput(){
+          document.getElementById('userQuestion').disabled = true;
+          document.getElementById('my-button').style.display = "none";
+        }
+        function disable12(){
+          document.getElementById('lf1').disabled = true;
+          document.getElementById('lf2').disabled = true;
+        }
+        function lifeline3Fun() {
+          $("#answerParagraph").text("Loading...");
+          disable12();      
+          $.ajax({
+            url: "{% url 'lifeline3' %}",
+            dataType:"json",
+            type: 'GET',
+            data: {'question': document.getElementById("userQuestion").value},
+            success: function(response) {
+                // console.log(response);
+                $("#answerParagraph").text(response.answer);
+                disableInput();
+            },
+            error: function(xhr, status, error) {
+                $("#answerParagraph").text("Chat GPT error. Try sending your question again.");
+                // console.log("Error");
+                // console.log(xhr);
+                // console.log(status);
+                // console.log(error);
+            }
+          });
+        }
+      </script>
+
+      <!-- LL2 Ajax -->
+      <script>
+        function disablenewInput(){
+          document.getElementById('L2Modal').style.display = "none";
+        }
+        function disable13(){
+          document.getElementById('lf1').disabled = true;
+          document.getElementById('lf3').disabled = true;
+        }
+        function checkHiddenCheckbox() {
+          disable13();
+          $.ajax({
+                url: "{% url 'lifeline2' %}",
+                dataType:"json",
+                type: 'GET',
+                data: {},
+                success: function(response) {
+                    disablenewInput();
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // console.log(error);
+                }
+          });
+        }
+      </script>
+      
+      <!-- Timer Ajax -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script>
+        const button = document.getElementById('myButton');
+        function countdown(seconds) {
+          displayTime(seconds);
+          var timer = setInterval(function() {
+            seconds--;
+            displayTime(seconds);
+            if (seconds <= 0) {
+              clearInterval(timer);
+            }
+            // console.log("{{profile.remainingTime}}")
+          }, 1000);
+          function displayTime(seconds) {
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = seconds % 60;
+            if (remainingSeconds <=0 && minutes <=0 || minutes >=36 ){
+              const int_input = document.querySelectorAll('input[type = "number"]');
+              int_input.forEach((variable) =>{
+                variable.required = false
+              });
+              var formattedTime = '00'+ ':' + ('00');
+              var end_session = document.getElementById('STfinal');
+              end_session.click();
+              clearInterval(displayTime());
+            }
+            var formattedTime = ('0' + minutes).slice(-2) + ':' + ('0' + remainingSeconds).slice(-2);
+            document.getElementById('timer').textContent = formattedTime;
+          }
+        }
+        countdown("{{second1}}");
+        function savetimer() {
+          $.ajax({
+            url: "{% url 'Savetimer' %}",
+            dataType: "json",
+            type: 'POST',
+            data: {
+            },
+            success: function(response) {
+              // console.log("success");
+            },
+            error: function(xhr, status, error) {
+              // console.log(error);
+            }
+          });
+        }
+        setInterval(savetimer, 5000); // Call the savetimer() function every 5 seconds
+      </script>
+
+      <!-- Disable the LL2 after 30 seconds -->
+      <script>
+      var buttonn = document.getElementById('lf2');
+      setTimeout(function() {
+        buttonn.disabled = true;
+      }, 30000);
+      </script>
+    </div>      
+  </body>
+</html>

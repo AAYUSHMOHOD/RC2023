@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+<body>
+    <h3>SignUp</h3>
+    {% for message in messages %}                           
+    <strong>Message for Safety:</strong> {{ message }}                              
+    {% endfor %}
+    <hr>
+    <form action ="/signup/" method = "post">
+        {% csrf_token %}
+        <label for="">Username</label>
+        <input type="text" id = "username" name = "username" placeholder="Create a username" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">First Name</label>
+        <input type="text" id = "fname" name = "fname" placeholder="Enter First Name" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">Last Name</label>
+        <input type="text" id = "lname" name = "lname" placeholder="Enter Last Name" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">Email Address</label>
+        <input type="email" id = "email" name = "email" placeholder="Enter E-mail ID" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">Password</label>
+        <input type="password" id = "pass1" name = "pass1" placeholder="Create a password" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">Confirm your Password</label>
+        <input type="password" id = "pass2" name = "pass2" placeholder="Confirm Password" Required>
+        <br>
+        <hr>
+        <br>
+        <label for="">Mobile No.</label>
+        <input type="text" id = "mobno" name = "mobno" placeholder="Enter mobile no." Required>
+        <br>
+        <hr>
+        <br>
+        <label for="categories">Select Category</label>
+        <select name="categories" id="categories">
+        <option value="1">Junior(FE/SE)</option>
+        <option value="0">Senior(TE/BE)</option>
+        </select>
+        <hr>
+        <br>
+        <button type = "submit">Sign Up</button>
+    </form>
+    <script src="" async defer></script>
+</body>
+</html>

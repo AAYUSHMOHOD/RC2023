@@ -1,0 +1,868 @@
+@font-face 
+{
+    font-family: solthin;
+    src: url(solthinregular.ttf);
+}
+
+/* Main Body CSS */
+body
+{
+    background-image: linear-gradient(11deg, #000000 -76%, #2c3e50 280%);
+    color: white;
+    min-height: 100vh;
+    height:100%;
+}
+.container{
+    display: grid;
+    grid-template-areas:             
+    'navbar'
+    '.'
+    'scorecard'
+    '.'
+    'extra_items'
+    'footer';
+    height: 100%;
+}
+
+/* NavBar CSS */
+.wrapper
+{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content:flex-end !important;
+    background: #111925;
+}
+.pisblogo
+{
+    float: right; 
+    margin-left: auto; 
+    overflow: hidden;
+}
+.Navbar2
+{
+    padding: 14px;
+    background-image: linear-gradient(11deg, #000000 -76%, #2c3e50 280%);
+}
+.logo
+{
+    border-right: 3px solid #D28511;
+    padding-right: 20px;
+}
+.profile
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    align-self: center;
+    margin: 0px auto;
+}
+.collapse
+{
+    display: flex;
+    justify-content: end;
+    padding: 0 20px;
+}
+.navbar
+{
+    padding: 0;
+    justify-content: space-between;
+    background-image: linear-gradient(11deg, #000000 -76%, #2c3e50 280%);
+}
+.nav-link
+{
+    padding: auto 40px;
+    margin: auto 14px;
+}
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show>.nav-link:hover
+{
+    color: #c5e1f0;
+}
+#navlink:hover
+{
+    color: aqua;
+    text-shadow:2px 2px 10px #0c5c51;
+    background-color: #0c2f42;
+
+} 
+.navbar-nav 
+{
+    width: 100%;
+    justify-content: flex-end;
+}
+.navbar-nav .nav-link
+{
+    padding-left:10px!important;
+    padding-right: 10px!important;
+}
+.DP
+{
+    margin-top: 2px;
+    border-radius: 20px;
+    border: 2px solid #D28511;
+}
+.prf
+{
+    padding: 15px 8px;
+}
+.navbar1
+{
+    grid-area: navbar;
+    justify-content: center;
+    padding-top: 20px;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+}
+
+/* Sponsors */
+.spons
+{
+    display: flex;
+    justify-content: center;
+    grid-gap: 20px;
+}
+.spons
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.spons_img
+{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;        
+}
+#sponss
+{
+    margin-bottom: 0;
+}
+
+/* Elements' CSS */
+.scorecard
+{
+    grid-area: scorecard;
+    display: grid;
+    grid-template-columns: 5% 55% 5% 15% 15% 20%;
+    grid-template-areas: '. profile . rank score .';
+    border: #ffffff;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+    background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%);
+    height: 20vh;
+}
+.profile
+{
+    grid-area: profile;
+    display: grid;
+    grid-template-columns: 7% 90%;
+    grid-template-areas: 'profile_pic details';
+    justify-content: center;
+    align-items: center;
+}
+.profile_pic
+{
+    grid-area: profile_pic;
+    display: grid;
+    height: 100px;
+    width: 100px;
+    justify-self: right;
+}
+.details
+{
+    grid-area: details;
+    display: grid;
+    padding-left: 20px;
+    justify-content: left;
+}
+.rank
+{
+    grid-area: rank;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.rank_img
+{
+    display: flex;
+}
+.score
+{
+    grid-area: score;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.extra_items
+{
+    grid-area: extra_items;
+    display: grid;
+    grid-template-columns:  50% 6% 42% ;
+    grid-template-areas:'extra . clash ';
+    grid-gap: 10px;
+    margin-top: 50px;
+}
+.extra
+{
+    grid-area: extra;
+    display: grid;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-areas:'. q_attempted q_corrected time .';
+    border-radius: 25px;
+    justify-content: space-around;
+    align-items: center;
+    background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+}
+.q_attempted
+{
+    grid-area: q_attempted;
+    display: grid;
+    justify-content: center;
+    align-items:center;
+}
+.q_corrected
+{
+    grid-area: q_corrected;
+    display: grid;
+    justify-content: center;
+    align-items:center;
+}
+.time
+{
+    grid-area: time;
+    display: grid;
+    justify-content: center;
+    align-items:center;
+}
+.progress-bar-title h6
+{
+    text-align: center;
+    color: #f0f5f4;
+}
+.clash
+{
+    grid-area: clash;
+    display: grid;
+    grid-template-areas: 
+    "clash_head"
+    "clash_content";
+    background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%); 
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items:center;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+}
+.clash_head
+{
+    grid-area: clash_head;
+    display: grid;
+    justify-content: center;
+}
+.clash_content
+{
+    grid-area: clash_content;
+    display: grid;
+    justify-content: center;
+}
+.last{
+    margin-top: 20px;
+    grid-area: footer;
+    display: grid;   
+    grid-gap: 20px;
+    align-items: start;
+}
+.spons
+{
+    display: flex;
+    justify-content: center;
+}
+.spons_img
+{
+    height: 200px;
+    width: 200px;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;            
+}
+h1
+{
+    margin-bottom: 0.8rem;
+}
+.progress 
+{
+    display: grid;
+    width: 140px;
+    height: 180px;
+    z-index: 0;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+    color: #f0f5f4;
+}
+.progress .track, .progress .fill
+{
+    fill: rgba(0, 0, 0, 0);
+    stroke-width: 3;
+    transform: rotate(90deg)translate(0px, -80px);
+}
+.progress .track
+{
+    stroke: #03001C;
+}
+.progress .fill 
+{
+    stroke: #f0f5f4;
+    stroke-dasharray: 219.99078369140625;
+    stroke-dashoffset: -219.99078369140625;
+    transition: stroke-dashoffset 3s;
+}
+.progress .value 
+{
+    fill: #f0f5f4;
+    text-anchor: middle;
+}   
+.progress1 
+{
+    display: grid;
+    width: 140px;
+    height: 180px;
+    z-index: 0;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+    color: #f0f5f4;
+}
+.progress1 .track, .progress1 .fill
+{
+    fill: rgba(0, 0, 0, 0);
+    stroke-width: 3;
+    transform: rotate(90deg)translate(0px, -80px);
+}
+.progress1 .track
+{
+    stroke: #03001C;
+}
+.progress1 .fill 
+{
+    stroke: #f0f5f4;
+    stroke-dasharray: 219.99078369140625;
+    stroke-dashoffset: -219.99078369140625;
+    transition: stroke-dashoffset 3s;
+}
+.progress1 .value 
+{
+    fill: #f0f5f4;
+    text-anchor: middle;
+}   
+
+/* Footer CSS */
+.footer
+{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #fffff0;    
+    max-width: -webkit-fill-available;
+    flex-direction: row;
+    position:relative;
+    background-image: linear-gradient(11deg, #000000 -76%, #2c3e50 280%);
+    height: 55px;
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+.footertext
+{
+    font-size: 1.4rem;
+    color: #92e6ff;
+    align-items: center;
+    align-self: center;
+    margin-bottom: 0!important;
+}
+
+/* Responsive */
+@media only screen and (max-width: 500px)
+{
+    .container 
+    {
+        display: grid;
+        grid-template-rows: 5% 20% 65% 10%;
+        grid-template-columns: 5% 90% 5%;
+        grid-template-areas:
+            '. navbar .'
+            '. scorecard .'
+            '. extra_items .'
+            '. footer .';
+        grid-gap: 25px;
+        min-width: 250px;
+        min-height: 600px;
+        padding-bottom: 55px;
+    }
+    .navbar
+    {
+        grid-area: navbar;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+    .scorecard 
+    {
+        grid-area: scorecard;
+        display: grid;
+        grid-template-rows: 35% 65%;
+        grid-template-columns: 50% 50%;
+        grid-template-areas:
+            'profile profile'
+            'rank score';
+        min-height: 300px;
+    }
+    .profile
+    {
+        grid-area: profile;
+        display: grid;
+        grid-template-columns: 30% 60%;
+        grid-template-areas: 'profile_pic details';
+        justify-content: center;
+        align-items: center;
+    }
+    .profile_pic
+    {
+        grid-area: profile_pic;
+        display: grid;
+        height: 100px;
+        width: 100px;
+        justify-self: right;
+        margin-top: 30px;
+    }
+    .details
+    {
+        grid-area: details;
+        display: grid;
+        padding-left: 10px;
+        justify-content: left;
+    }
+    .rank
+    {
+        grid-area: rank;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .rank_img
+    {
+        display: flex;
+    }
+    .score
+    {
+        grid-area: score;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .extra_items
+    {
+        grid-area: extra_items;
+        display: grid;
+        grid-template-rows:55% 40%;
+        grid-template-columns: 100% ;
+        grid-template-areas:
+            ' extra '
+            ' clash ';
+        min-width: inherit;
+    }
+    .extra
+    {
+        grid-area: extra;
+        display: grid;
+        grid-template-rows: auto 30% 30% 30% auto;
+        grid-template-columns: 1fr ;
+        grid-template-areas:
+            '.'
+            'q_attempted '
+            'q_corrected '
+            'time'
+            '.';
+        border-radius: 25px;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #301E67;
+    }
+    .q_attempted
+    {
+        grid-area: q_attempted;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .q_corrected
+    {
+        grid-area: q_corrected;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .time
+    {
+        grid-area: time;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .progress-bar-title h6
+    {
+        text-align: center;
+        color: #5B8FB9;
+    }
+    .clash
+    {
+        grid-area: clash;
+        display: grid;
+        grid-template-areas: 
+            "clash_head"
+            "clash_content";
+        background-color: #301E67;
+        border-radius: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items:center;
+        height: 390px;
+        overflow: auto;
+    }
+    .progress-bar
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: inherit;
+    }
+    .clash_head
+    {
+        grid-area: clash_head;
+        display: grid;
+        justify-content: center;
+    }
+    .clash_content
+    {
+        grid-area: clash_content;
+        display: grid;
+        justify-content: center;
+    }
+    .last
+    {
+        grid-area: footer;
+        display: grid;   
+        padding-top: 0px;
+        align-items: start;
+    }
+    .spons
+    {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;  
+        padding-bottom: 0;
+    }
+    .spons_img
+    {
+        display: flexbox;
+        justify-content: space-around;
+        border-radius: 25px;
+        justify-content: center;
+        align-items: center;        
+    }
+    .progress
+    {
+        display: grid;
+        width: 85px;
+        height: 120px;
+        z-index: 1;
+        justify-content: center;
+        align-items: center; 
+        background-color: #301E67;
+    }
+    .progress .track, .progress .fill
+    {
+        fill: rgba(0, 0, 0, 0);
+        stroke-width: 3;
+        transform: rotate(90deg)translate(0px, -80px);
+    }
+    .progress .track
+    {
+        stroke: #03001C;
+    }
+    .progress .fill 
+    {
+        stroke: #f0f5f4;
+        stroke-dasharray: 219.99078369140625;
+        stroke-dashoffset: -219.99078369140625;
+        transition: stroke-dashoffset 3s;
+    }
+    .progress .value 
+    {
+        fill: #B6EADA;
+        text-anchor: middle;
+    }
+    .progress1
+    {
+        display: grid;
+        width: 85px;
+        height: 120px;
+        z-index: 1;
+        justify-content: center;
+        align-items: center; 
+        background-color: #301E67;
+    }
+    .progress1 .track, .progress1 .fill
+    {
+        fill: rgba(0, 0, 0, 0);
+        stroke-width: 3;
+        transform: rotate(90deg)translate(0px, -80px);
+    }
+    .progress1 .track
+    {
+        stroke: #03001C;
+    }
+    .progress1 .fill 
+    {
+        stroke: #f0f5f4;
+        stroke-dasharray: 219.99078369140625;
+        stroke-dashoffset: -219.99078369140625;
+        transition: stroke-dashoffset 3s;
+    }
+    .progress1 .value 
+    {
+        fill: #B6EADA;
+        text-anchor: middle;
+    }
+    .ieeelogo
+    {
+        display: none;
+    }
+}
+
+@media (min-width: 500px ) and (max-width: 800px)
+{
+    .container
+    {
+        display: grid;
+        grid-template-areas:             
+            'navbar'
+            '.'
+            'scorecard'
+            '.'
+            'extra_items'
+            'footer';
+        height: 100%;
+    }
+    .scorecard
+    {
+        grid-area: scorecard;
+        display: grid;
+        grid-template-columns: 10% 55% 15% 15% 5%;
+        grid-template-areas: '. profile rank score .';
+        border: #ffffff;
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 25px;
+        height: 150px;
+        background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%);
+    }
+    .profile
+    {
+        grid-area: profile;
+        display: grid;
+        grid-template-columns: 7% 90%;
+        grid-template-areas: 'profile_pic details';
+        justify-content: center;
+        align-items: center;
+    }
+    .profile_pic
+    {
+        grid-area: profile_pic;
+        display: grid;
+        height: 100px;
+        width: 100px;
+        justify-self: right;
+    }
+    .details
+    {
+        grid-area: details;
+        display: grid;
+        padding-left: 10px;
+        justify-content: left;
+    }
+    .rank
+    {
+        grid-area: rank;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .rank_img
+    {
+        display: flex;
+    }
+    .score
+    {
+        grid-area: score;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .extra_items
+    {
+        grid-area: extra_items;
+        display: grid;
+        grid-template-columns: 5% 90% 5%;
+        grid-template-areas:'. extra .'
+        '. clash .';
+        grid-gap: 10px;
+    }
+    .extra
+    {
+        grid-area: extra;
+        display: grid;
+        grid-template-columns: 5% 30% 30% 30% 5%;
+        grid-template-areas:'. q_attempted q_corrected time .';
+        border-radius: 25px;
+        justify-content: space-around;
+        align-items: center;
+        width: inherit;
+        background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%);
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 25px;
+    }
+    .q_attempted
+    {
+        grid-area: q_attempted;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .q_corrected
+    {
+        grid-area: q_corrected;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .time
+    {
+        grid-area: time;
+        display: grid;
+        justify-content: center;
+        align-items:center;
+    }
+    .progress-bar-title h6
+    {
+        text-align: center;
+        color: #f0f5f4;
+    }
+    .clash
+    {
+        grid-area: clash;
+        display: grid;
+        grid-template-areas: 
+            "clash_head"
+            "clash_content";
+        background-image: linear-gradient(11deg, #000000 -76%, #26486a 280%); 
+        border-radius: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items:center;
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 25px;
+    }
+    .clash_head
+    {
+        grid-area: clash_head;
+        display: grid;
+        justify-content: center;
+    }
+    .clash_content
+    {
+        grid-area: clash_content;
+        display: grid;
+        justify-content: center;
+        overflow: auto;
+    }
+    .progress
+    {
+        display: grid;
+        width: 100px;
+        height: 140px;
+        z-index: 0;
+        justify-content: center;
+        align-items: center; 
+        background-color: #301E67;
+        background: inherit;
+        color: #f0f5f4;
+    }
+    .progress .track, .progress .fill
+    {
+        fill: rgba(0, 0, 0, 0);
+        stroke-width: 3;
+        transform: rotate(90deg)translate(0px, -80px);
+    }
+    .progress .track
+    {
+        stroke: #03001C;
+    }
+    .progress .fill 
+    {
+        stroke: #f0f5f4;
+        stroke-dasharray: 219.99078369140625;
+        stroke-dashoffset: -219.99078369140625;
+        transition: stroke-dashoffset 3s;
+    }
+    .progress .value 
+    {
+        fill: #f0f5f4;
+        text-anchor: middle;
+    }
+    .progress1 
+    {
+        display: grid;
+        width: 100px;
+        height: 140px;
+        z-index: 0;
+        justify-content: center;
+        align-items: center;
+        background: inherit;
+        color: #f0f5f4;
+    }
+    .progress1 .track, .progress1 .fill
+    {
+        fill: rgba(0, 0, 0, 0);
+        stroke-width: 3;
+        transform: rotate(90deg)translate(0px, -80px);
+    }
+    .progress1 .track
+    {
+        stroke: #03001C;
+    }
+    .progress1 .fill 
+    {
+        stroke: #f0f5f4;
+        stroke-dasharray: 219.99078369140625;
+        stroke-dashoffset: -219.99078369140625;
+        transition: stroke-dashoffset 3s;
+    }
+    .progress1 .value 
+    {
+        fill: #f0f5f4;
+        text-anchor: middle;
+    }   
+}
